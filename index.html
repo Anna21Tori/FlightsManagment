@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<title>Applikacja - loty w kosmos</title>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Anna Dybel"/>
+    <meta name="description" content="portfolio website Anna Dybel"/>
+    <meta name="keywords" content="informatics, html, js, jq"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    <!-- jQuery library -->
+    <script src="libs/jquery-3.1.0.min.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/UI.js"></script>
+
+    <!--STYLE-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+	
+    <script>
+           $(document).ready(function () { 
+                var ui = UI;
+            
+                ui.click(main);
+            
+               
+         
+               });
+    </script>
+
+	</head>
+
+	<body>
+        <div id="black">
+            
+        </div>
+        <div id="dark-black">
+            
+        </div>
+           <nav>
+       
+         </nav>
+     <div id="main-div">
+      
+         <div id="main-menu">
+             <div class="menu-opt flightsMng" id="flights">
+                 <img class="flightsMng content-opt" alt="rocket" src="img/rocket.png" width="200" height="200"/>
+                 <p class="flightsMng name-opt content-opt"> Flights management</p>
+             </div>
+             
+             <div class="menu-opt clientsMng" id="clients">
+                 <img  class="clientsMng content-opt" alt="clients" src="img/clients.png" width="200" height="200"/>
+                 <p class="clientsMng name-opt content-opt"> Clients management</p>
+             </div>
+         </div>
+        
+        
+              
+    </div>
+         <div id="managment-div">
+             <h1 id="name-list-clients">List of Clients <span ><button class="button" id="add-client" >Add</button><span class="close-panel" id="close-list-clients"><img src="img/close.png" alt="close" width="40" height="40"/></span></span> </h1>
+             <div id="content-list-clients">
+             </div>
+          </div>
+        
+        <div id="managment-flights-div">
+             <h1 id="name-list-flights">List of Flights <span ><button class="button " id="add-flight" >Add</button><span class="close-panel" id="close-list-flights"><img src="img/close.png" alt="close" width="40" height="40"/></span></span> </h1>
+             <div id="content-list-flights">
+             </div>
+          </div>
+        
+         <div id="add-client-panel" class="panel">
+           <h1 id="name-panel-add"> Add new client <span  class="close-panel" id="close-panel-add-client"><img src="img/close.png" alt="close" width="40" height="40"/></span></h1>
+             <form id="form-new-client"  class="panel-form">
+                <label> 
+                    Surname:
+                    <input type="text" id="surname" class="input-new-client" name="surname" required>
+                 </label><br>
+                <label>First name:
+                    <input type="text" id="fisrtname" class="input-new-client" name="firstname" required></label><br>
+                 <label>
+                     Country:
+                    <input type="text" id="country" class="input-new-client"name="country" required>
+                 </label><br>
+                 Gender:<br>
+                 <input type="radio" name="gender" value="male"> Male<br>
+                 <input type="radio" name="gender" value="female"> Female<br>
+                 <label>
+                    Date of birth:
+                    <input id="date-of-birth-client" type="date" class="input-new-client"  name="dateofbirth"  min="1900-01-01"><br>
+                 </label>
+                 <span class="textarea">
+                    Note:<br>
+                    <textarea id="note-client" rows="4" cols="50"></textarea>
+                 </span>
+                 <div  id="add-client-to-database" class="button" > Add</div>
+             </form>
+         </div>
+        
+        
+           <div id="add-flight-panel" class="panel">
+           <h1 id="name-panel-add"> Add new flight <span  class="close-panel" id="close-panel-add-flight"><img src="img/close.png" alt="close" width="40" height="40"/></span></h1>
+             <form id="form-new-flight" class="panel-form">
+           
+                 <label class="label-flight">
+                    Date of flight:
+                    <input id="date-of-flight-client" type="date" class="input-new-flight"  name="dateofflight"  min="2019-01-01" required>
+                 </label><br>
+                 
+                 <label class="label-flight"> 
+                    Hour of flight:
+                    <input type="time" id="time-flight" name="time-flight" required>
+                 </label><br>
+                 
+                 <label class="label-flight">
+                    Date of arrival:
+                    <input id="date-of-arrival-client" type="date" class="input-new-flight"  name="dateofarival"  min="2019-01-01" required>
+                 </label><br>
+                 
+                 <label class="label-flight"> 
+                    Hour of arrival:
+                    <input type="time" name="time-arrival" id="time-arrival"required>
+                 </label><br>
+                 
+                 <label class="label-flight">price ticket:
+                    <input type="number" id="price-add" name="price" min="1">
+                 </label><br>
+                 <label class="label-flight">naumber of seats:
+                    <input type="number" id="seats-add" name="seats" min="1">
+                 </label><br>
+                
+                 <div  id="add-flight-to-database" class="button" > Add</div>
+             </form>
+         </div>
+        
+        
+        <form class="edit-panel" id="edit-surname-panel">
+             <label> 
+                    Surname:
+                    <input type="text" id="edit-surname" class="input-new-client" name="surname" required>
+                 <span  class="close-edit" id="close-edit-surname"><img src="img/close.png" alt="close" width="20" height="20"/></span>
+                 </label><br>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        <form class="edit-panel" id="edit-name-panel">
+            <label>First name:
+                    <input type="text" id="edit-fisrtname" class="input-new-client" name="firstname" required>
+                <span class="close-edit"  id="close-edit-name"><img src="img/close.png" alt="close" width="20" height="20"/></span>
+            </label><br>
+                <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        <form class="edit-panel" id="edit-date-birth-panel">
+            <label>
+                    Date of birth: 
+                    <span  class="close-edit" id="close-edit-date-client"><img src="img/close.png" alt="close" width="20" height="20"/></span><br>
+                    <input id="edit-date-of-birth-client" type="date" class="input-new-client"  name="dateofbirth"  min="1900-01-01"><br>
+                 </label>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        <form class="edit-panel" id="edit-gender-panel">
+            <label>
+            Gender:<span  class="close-edit" id="close-edit-gender"><img src="img/close.png" alt="close" width="20" height="20"/></span><br>
+                 <input type="radio" name="gender" value="male"> Male<br>
+                 <input type="radio" name="gender" value="female"> Female<br>
+            </label>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        <form class="edit-panel" id="edit-country-panel">
+            <label>
+                     Country:
+                    <input type="text" id="edit-country" class="input-new-client"name="country" required>
+                 </label> <span  class="close-edit" id="close-edit-surname"><img src="img/close.png" alt="close" width="20" height="20"/></span><br>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        
+        <form class="edit-panel" id="edit-note-client-panel">
+            <label>
+                    Note:<span  class="close-edit" id="close-edit-note-client"><img src="img/close.png" alt="close" width="20" height="20"/></span><br>
+                    <textarea id="edit-note-client" rows="4" cols="45"></textarea>
+            </label>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        
+        <form class="edit-panel" id="edit-date-flight-panel">
+             <label class="label-flight">
+                    Date of flight:
+                    <input id="edit-date-of-flight-client" type="date" class="input-new-flight"  name="dateofflight"  min="2019-01-01" required>
+                 <span  class="close-edit" id="close-edit-date-flight"><img src="img/close.png" alt="close" width="20" height="20"/></span>
+             </label><br>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        
+        <form class="edit-panel" id="edit-hour-flight-panel">
+            <label class="label-flight"> 
+                    Hour of flight:
+                    <input type="time" id="edit-time-flight" name="edit-time-flight" required>
+                <span  class="close-edit" id="close-edit-hour-flight"><img src="img/close.png" alt="close" width="20" height="20"/></span>
+            </label><br>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        
+          <form class="edit-panel" id="edit-date-arrival-panel">
+            <label class="label-flight">
+                    Date of arrival:
+                    <input id="edit-date-of-arrival-client" type="date" class="input-new-flight"  name="dateofarival"  min="2019-01-01" required>
+                <span  class="close-edit" id="close-edit-date-arrival"><img src="img/close.png" alt="close" width="20" height="20"/></span>
+                 </label><br>
+            <div   class="button save-edit-button" > SAVE</div>
+              
+        </form>
+        
+           <form class="edit-panel" id="edit-hour-arrival-panel">
+            <label class="label-flight"> 
+                    Hour of arrival:
+                    <input type="time" name="edit-time-arrival" id="edit-time-arrival"required>
+                <span  class="close-edit" id="close-edit-hour-arrival"><img src="img/close.png" alt="close" width="20" height="20"/></span>
+                 </label><br>
+            <div   class="button save-edit-button" > SAVE</div>
+              
+            </form>
+        <form class="edit-panel" id="edit-price-panel">
+            <label class="label-flight">price ticket:
+                        <input type="number" id="edit-price-add" name="edit-price" min="1">
+                <span  class="close-edit" id="close-edit-price"><img src="img/close.png" alt="close" width="20" height="20"/></span>
+            </label><br>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>
+        
+        <form class="edit-panel" id="edit-seats-panel">
+            <label class="label-flight">naumber of seats:
+                <input type="number" id="edit-seats-add" name="edit-seats" min="1">
+                <span  class="close-edit" id="close-edit-seats"><img src="img/close.png" alt="close" width="20" height="20"/></span>
+            </label><br>
+            <div   class="button save-edit-button" > SAVE</div>
+        </form>    
+        
+        
+        
+
+	</body>
+</html>
